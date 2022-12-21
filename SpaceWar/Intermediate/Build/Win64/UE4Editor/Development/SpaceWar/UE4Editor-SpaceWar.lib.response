@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-SpaceWar.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\SpaceWarEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\SpaceWar.cpp.obj"
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\SpaceWarGameModeBase.cpp.obj"
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\SpaceWar.init.gen.cpp.obj"
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\SpaceWarGameModeBase.gen.cpp.obj"
+"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\Default.rc2.res"
+/OUT:"C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\UE4Editor-SpaceWar.lib"
+/INCLUDE:IMPLEMENT_MODULE_SpaceWar

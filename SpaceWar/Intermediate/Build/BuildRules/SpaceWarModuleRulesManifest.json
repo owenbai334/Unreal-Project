@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\owenb\\Documents\\Unreal-Project\\SpaceWar\\Source\\SpaceWar\\SpaceWar.Build.cs",
+		"C:\\Users\\owenb\\Documents\\Unreal-Project\\SpaceWar\\Source\\SpaceWar.Target.cs",
+		"C:\\Users\\owenb\\Documents\\Unreal-Project\\SpaceWar\\Source\\SpaceWarEditor.Target.cs"
+	],
+	"EngineVersion": "4.26.2"
+}

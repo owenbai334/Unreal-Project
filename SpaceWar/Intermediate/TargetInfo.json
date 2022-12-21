@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SpaceWar",
+			"Path": "C:\\Users\\owenb\\Documents\\Unreal-Project\\SpaceWar\\Source\\SpaceWar.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SpaceWarEditor",
+			"Path": "C:\\Users\\owenb\\Documents\\Unreal-Project\\SpaceWar\\Source\\SpaceWarEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

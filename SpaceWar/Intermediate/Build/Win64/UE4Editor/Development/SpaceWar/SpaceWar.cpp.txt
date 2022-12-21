@@ -1,0 +1,2 @@
+C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\Definitions.SpaceWar.h
+c:\users\owenb\documents\unreal-project\spacewar\source\spacewar\SpaceWar.h

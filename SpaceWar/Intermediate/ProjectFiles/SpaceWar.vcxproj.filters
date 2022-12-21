@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SpaceWar.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{AD3D0445-C9D7-4FD9-BA28-4B078A57FF64}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SpaceWar.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SpaceWarEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{2CF4E14F-EE43-47C1-91BE-16C94F8F0A37}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\SpaceWar">
+      <UniqueIdentifier>{DC46F3C5-A7AA-4DB2-9CF3-E27B9582F698}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SpaceWar\SpaceWar.Build.cs">
+      <Filter>Source\SpaceWar</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SpaceWar\SpaceWar.cpp">
+      <Filter>Source\SpaceWar</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SpaceWar\SpaceWar.h">
+      <Filter>Source\SpaceWar</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SpaceWar\SpaceWarGameModeBase.cpp">
+      <Filter>Source\SpaceWar</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SpaceWar\SpaceWarGameModeBase.h">
+      <Filter>Source\SpaceWar</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

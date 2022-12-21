@@ -1,0 +1,3 @@
+C:\Users\owenb\Documents\Unreal-Project\SpaceWar\Intermediate\Build\Win64\UE4Editor\Development\SpaceWar\Definitions.SpaceWar.h
+C:\Program Files\Epic Games\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
