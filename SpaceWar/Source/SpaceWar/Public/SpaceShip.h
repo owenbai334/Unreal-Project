@@ -9,6 +9,7 @@
 class USphereComponent;
 class UCameraComponent;
 class USpringArmComponent;
+class ABullet;
 
 UCLASS()
 class SPACEWAR_API ASpaceShip : public APawn
@@ -36,13 +37,30 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Move")
 	float speed;
 
+	FTimerHandle TimerHandle_BetweenShots;
+
+	UPROPERTY(EditAnywhere, Category = "Fire")
+	float TimeBetweenShot;
+
 	APlayerController* PC;
+
+	UPROPERTY(EditAnywhere, Category = "Fire")
+	TSubclassOf<ABullet> Bullet;
+
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	USceneComponent* SpawnPoint;
+
 	virtual void BeginPlay() override;
 	
 	void LookAtCursor();
+	
 	void MoveUp(float value);
 	void MoveRight(float value);
 	void Move();
+
+	void Fire();
+	void StartFire();
+	void EndFire();
 
 public:	
 	// Called every frame
