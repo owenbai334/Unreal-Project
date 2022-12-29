@@ -2,6 +2,7 @@
 
 
 #include "SpaceShip.h"
+#include "Enemy.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
 #include "Camera/CameraComponent.h"
@@ -110,4 +111,18 @@ void ASpaceShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 
 }
+
+void ASpaceShip::NotifyActorBeginOverlap(AActor * OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+	AEnemy* Enemy = Cast<AEnemy>(OtherActor);
+
+	if (Enemy)
+	{
+		Enemy->Destroy();
+		UE_LOG(LogTemp,Warning, TEXT("Player is dead"));
+		//Destroy();
+	}
+}
+
 

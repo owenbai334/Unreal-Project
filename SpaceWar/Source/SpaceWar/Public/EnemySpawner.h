@@ -8,6 +8,8 @@
 
 class AEnemy;
 class UBoxComponent;
+class ASpaceShip;
+
 UCLASS()
 class SPACEWAR_API AEnemySpawner : public AActor
 {
@@ -26,6 +28,18 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	UBoxComponent* SpawnArea;
+
+	FVector GetGenerateLocation();
+
+	float MinimumDistanceToPlayer = 1200.0f;
+
+	ASpaceShip* SpaceShip;
+
+	void SpanEnemy();
+
+	FTimerHandle TimerHandle_Spawn;
+
+	float SpawnInterval;
 
 public:	
 	// Called every frame
