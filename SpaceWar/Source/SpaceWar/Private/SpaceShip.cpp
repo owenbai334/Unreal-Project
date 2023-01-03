@@ -9,16 +9,18 @@
 #include "GameFrameWork/PlayerController.h"
 #include "GameFrameWork/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "Bullet.h"
 #include "TimerManager.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASpaceShip::ASpaceShip()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	CollisionComponet = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponet"));
 	RootComponent = CollisionComponet;
 	
@@ -37,6 +39,8 @@ ASpaceShip::ASpaceShip()
 	TimeBetweenShot = 0.6f;
 
 	speed = 2500.0f;
+
+	bDead = false;
 
 }
 
@@ -75,10 +79,11 @@ void ASpaceShip::Move()
 
 void ASpaceShip::Fire()
 {
-	if (Bullet)
+	if (Bullet&&!bDead)
 	{
 		FActorSpawnParameters SpawnParameters;
 		GetWorld()->SpawnActor<ABullet>(Bullet, SpawnPoint->GetComponentLocation(), SpawnPoint->GetComponentRotation(), SpawnParameters);
+		UGameplayStatics::PlaySoundAtLocation(this, ShootCue, GetActorLocation());
 	}
 }
 
@@ -92,12 +97,28 @@ void ASpaceShip::EndFire()
 	GetWorldTimerManager().ClearTimer(TimerHandle_BetweenShots);
 }
 
+void ASpaceShip::RestartLevil()
+{
+	UGameplayStatics::OpenLevel(this,"MainMap");
+}
+
+void ASpaceShip::OnDeath()
+{
+	bDead = true;
+	CollisionComponet->SetVisibility(false,true);
+	UGameplayStatics::PlaySoundAtLocation(this,GameOverCue,GetActorLocation());
+	GetWorldTimerManager().SetTimer(TimerHandle_Restart,this,&ASpaceShip::RestartLevil,2.0f,false);
+}
+
 // Called every frame
 void ASpaceShip::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	LookAtCursor();
-	Move();
+	if (!bDead)
+	{
+		LookAtCursor();
+		Move();
+	}
 }
 
 // Called to bind functionality to input
@@ -120,7 +141,7 @@ void ASpaceShip::NotifyActorBeginOverlap(AActor * OtherActor)
 	if (Enemy)
 	{
 		Enemy->Destroy();
-		UE_LOG(LogTemp,Warning, TEXT("Player is dead"));
+		OnDeath();
 		//Destroy();
 	}
 }

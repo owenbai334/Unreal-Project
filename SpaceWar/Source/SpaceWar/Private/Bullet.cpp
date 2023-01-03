@@ -7,6 +7,7 @@
 #include "Components/SceneComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/BlockingVolume.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABullet::ABullet()
@@ -26,7 +27,6 @@ ABullet::ABullet()
 void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -43,7 +43,7 @@ void ABullet::NotifyActorBeginOverlap(AActor * OtherActor)
 	AEnemy* Enemy = Cast<AEnemy>(OtherActor);
 	if (Enemy)
 	{
-		Enemy->Destroy();
+		Enemy->OnDeath();
 		Destroy();
 	}
 	else if (Cast<ABlockingVolume>(OtherActor))

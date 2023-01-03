@@ -8,6 +8,8 @@
 
 class USphereComponent;
 class ASpaceShip;
+class AShipGameMode;
+class AEnemySpawner;
 
 UCLASS()
 class SPACEWAR_API AEnemy : public APawn
@@ -33,8 +35,13 @@ protected:
 	ASpaceShip* SpaceShip;
 	float Speed = 300.0f;
 
+	AShipGameMode* MyGameMode;
+
+	AEnemySpawner* EnemySpawner;
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetColor();
+
 
 public:	
 	// Called every frame
@@ -43,4 +50,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void OnDeath();
 };

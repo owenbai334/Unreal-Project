@@ -19,6 +19,8 @@ AEnemySpawner::AEnemySpawner()
 	SpawnArea = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnArea"));
 	RootComponent = SpawnArea;
 	SpawnInterval = 2.0f;
+	MaxEnemyNum = 20;
+	CurrentEnemyCount = 0;
 	
 }
 
@@ -46,8 +48,12 @@ FVector AEnemySpawner::GetGenerateLocation()
 
 void AEnemySpawner::SpanEnemy()
 {
-	FActorSpawnParameters SpawnParameters;
-	GetWorld()->SpawnActor<AEnemy>(Enemy,GetGenerateLocation(),FRotator::ZeroRotator,SpawnParameters);
+	if (SpaceShip->GetBDead() == false&& CurrentEnemyCount<= MaxEnemyNum)
+	{
+		FActorSpawnParameters SpawnParameters;
+		GetWorld()->SpawnActor<AEnemy>(Enemy, GetGenerateLocation(), FRotator::ZeroRotator, SpawnParameters);
+		CurrentEnemyCount= CurrentEnemyCount+1;
+	}
 }
 
 // Called every frame
@@ -55,5 +61,14 @@ void AEnemySpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AEnemySpawner::DecreaseEnemyCount()
+{
+	if (CurrentEnemyCount > 0)
+	{
+		CurrentEnemyCount= CurrentEnemyCount-1;
+		UE_LOG(LogTemp,Warning,TEXT("%s"),*FString::SanitizeFloat(CurrentEnemyCount));
+	}
 }
 

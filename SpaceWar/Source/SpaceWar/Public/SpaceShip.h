@@ -10,6 +10,7 @@ class USphereComponent;
 class UCameraComponent;
 class USpringArmComponent;
 class ABullet;
+class USoundCue;
 
 UCLASS()
 class SPACEWAR_API ASpaceShip : public APawn
@@ -38,6 +39,7 @@ protected:
 	float speed;
 
 	FTimerHandle TimerHandle_BetweenShots;
+	FTimerHandle TimerHandle_Restart;
 
 	UPROPERTY(EditAnywhere, Category = "Fire")
 	float TimeBetweenShot;
@@ -49,6 +51,14 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	USceneComponent* SpawnPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundCue* GameOverCue;
+
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundCue* ShootCue;
+
+	bool bDead;
 
 	virtual void BeginPlay() override;
 	
@@ -62,6 +72,9 @@ protected:
 	void StartFire();
 	void EndFire();
 
+	void RestartLevil();
+	void OnDeath();
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -70,5 +83,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	FORCEINLINE bool GetBDead()
+	{
+		return bDead;
+	}
 
 };

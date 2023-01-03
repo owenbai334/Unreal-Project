@@ -3,6 +3,8 @@
 
 #include "Enemy.h"
 #include "SpaceShip.h"
+#include "ShipGameMode.h"
+#include "EnemySpawner.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -27,6 +29,10 @@ void AEnemy::BeginPlay()
 	Super::BeginPlay();
 	SpaceShip = Cast<ASpaceShip>(UGameplayStatics::GetPlayerPawn(this,0));
 	SetColor();
+	MyGameMode = Cast<AShipGameMode>(UGameplayStatics::GetGameMode(this));
+	TArray<AActor*> EnemySpawnerArray;
+	UGameplayStatics::GetAllActorsOfClass(this, AEnemySpawner::StaticClass(), EnemySpawnerArray);
+	EnemySpawner = Cast<AEnemySpawner>(EnemySpawnerArray[0]);
 }
 
 void AEnemy::MoveTowardsPlayer(float DealtaTime)
@@ -36,11 +42,21 @@ void AEnemy::MoveTowardsPlayer(float DealtaTime)
 	SetActorRotation(UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), SpaceShip->GetActorLocation()));
 }
 
+void AEnemy::OnDeath()
+{
+	MyGameMode->IncreaseScore();
+	EnemySpawner->DecreaseEnemyCount();
+	Destroy();
+}
+
 // Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	MoveTowardsPlayer(DeltaTime);
+	if (SpaceShip->GetBDead() == false)
+	{
+		MoveTowardsPlayer(DeltaTime);
+	}	
 }
 
 // Called to bind functionality to input

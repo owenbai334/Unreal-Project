@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\SpaceWar.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{CE84A1E1-8916-41AB-AD9F-C8B1BF44C151}</UniqueIdentifier>
+      <UniqueIdentifier>{77ED0895-F0C5-473E-9E97-70C7AB426BED}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\SpaceWar.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{90B1B568-6562-4A67-AF2D-AFA73BEFBAE7}</UniqueIdentifier>
+      <UniqueIdentifier>{DC5FC79E-769C-4CA3-8D4C-F52B2422D8C7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\SpaceWar">
-      <UniqueIdentifier>{91D081E9-4654-4936-9094-CBDD7A2511EC}</UniqueIdentifier>
+      <UniqueIdentifier>{6D6615C3-749F-41FB-B16F-B62ADE6F1D11}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\SpaceWar\SpaceWar.Build.cs">
       <Filter>Source\SpaceWar</Filter>
@@ -45,7 +45,7 @@
       <Filter>Source\SpaceWar</Filter>
     </ClInclude>
     <Filter Include="Source\SpaceWar\Private">
-      <UniqueIdentifier>{5F994C20-FFEE-4677-A1C8-103DC049673E}</UniqueIdentifier>
+      <UniqueIdentifier>{BCFC7A0E-02DA-4C9F-B2AC-E8E27BF432C1}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\SpaceWar\Private\Bullet.cpp">
       <Filter>Source\SpaceWar\Private</Filter>
@@ -56,11 +56,14 @@
     <ClCompile Include="..\..\Source\SpaceWar\Private\EnemySpawner.cpp">
       <Filter>Source\SpaceWar\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SpaceWar\Private\ShipGameMode.cpp">
+      <Filter>Source\SpaceWar\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SpaceWar\Private\SpaceShip.cpp">
       <Filter>Source\SpaceWar\Private</Filter>
     </ClCompile>
     <Filter Include="Source\SpaceWar\Public">
-      <UniqueIdentifier>{75D12272-16FC-4F2C-BC44-402BAB6CCBD0}</UniqueIdentifier>
+      <UniqueIdentifier>{385605E7-6DCD-4DDC-B1C1-114C94E2B728}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\SpaceWar\Public\Bullet.h">
       <Filter>Source\SpaceWar\Public</Filter>
@@ -69,6 +72,9 @@
       <Filter>Source\SpaceWar\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SpaceWar\Public\EnemySpawner.h">
+      <Filter>Source\SpaceWar\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SpaceWar\Public\ShipGameMode.h">
       <Filter>Source\SpaceWar\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SpaceWar\Public\SpaceShip.h">

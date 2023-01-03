@@ -41,8 +41,14 @@ protected:
 
 	float SpawnInterval;
 
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+	int MaxEnemyNum;
+
+	int CurrentEnemyCount;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void DecreaseEnemyCount();
 };
