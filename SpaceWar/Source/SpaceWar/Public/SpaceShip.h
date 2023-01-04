@@ -52,6 +52,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Component")
 	USceneComponent* SpawnPoint;
 
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	UParticleSystemComponent* ThrusterParticalComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Particle")
+	UParticleSystem* ExplosionParticle;
+
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundCue* GameOverCue;
 
@@ -59,6 +65,8 @@ protected:
 	USoundCue* ShootCue;
 
 	bool bDead;
+	bool bUpMove;
+	bool bRightMove;
 
 	virtual void BeginPlay() override;
 	
@@ -74,6 +82,7 @@ protected:
 
 	void RestartLevil();
 	void OnDeath();
+	void EscapeGame();
 	
 public:	
 	// Called every frame

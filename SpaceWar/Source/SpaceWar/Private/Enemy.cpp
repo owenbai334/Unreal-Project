@@ -9,6 +9,9 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Particles/ParticleSystem.h"
+
 
 // Sets default values
 AEnemy::AEnemy()
@@ -46,6 +49,7 @@ void AEnemy::OnDeath()
 {
 	MyGameMode->IncreaseScore();
 	EnemySpawner->DecreaseEnemyCount();
+	SpawnExplosion();
 	Destroy();
 }
 

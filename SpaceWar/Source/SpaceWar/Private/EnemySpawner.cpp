@@ -18,7 +18,7 @@ AEnemySpawner::AEnemySpawner()
 
 	SpawnArea = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnArea"));
 	RootComponent = SpawnArea;
-	SpawnInterval = 2.0f;
+	SpawnInterval = 0.8f;
 	MaxEnemyNum = 20;
 	CurrentEnemyCount = 0;
 	
@@ -68,7 +68,6 @@ void AEnemySpawner::DecreaseEnemyCount()
 	if (CurrentEnemyCount > 0)
 	{
 		CurrentEnemyCount= CurrentEnemyCount-1;
-		UE_LOG(LogTemp,Warning,TEXT("%s"),*FString::SanitizeFloat(CurrentEnemyCount));
 	}
 }
 

@@ -28,6 +28,9 @@ protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Component")
 	UStaticMeshComponent* ShipSM;
 
+	UPROPERTY(EditAnywhere, Category = "Particle")
+	UParticleSystem* ExplosionParticle;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -41,6 +44,9 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetColor();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SpawnExplosion();
 
 
 public:	

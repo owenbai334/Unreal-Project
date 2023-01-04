@@ -14,6 +14,8 @@
 #include "Bullet.h"
 #include "TimerManager.h"
 #include "Sound/SoundCue.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ASpaceShip::ASpaceShip()
@@ -35,6 +37,9 @@ ASpaceShip::ASpaceShip()
 
 	SpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("SpawnPoint"));
 	SpawnPoint->SetupAttachment(ShipSM);
+
+	ThrusterParticalComponent = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("TrusterPartical"));
+	ThrusterParticalComponent->SetupAttachment(RootComponent);
 
 	TimeBetweenShot = 0.6f;
 
@@ -64,11 +69,27 @@ void ASpaceShip::LookAtCursor()
 
 void ASpaceShip::MoveUp(float value)
 {
+	if (value != 0)
+	{
+		bUpMove = true;
+	}
+	else
+	{
+		bUpMove = false;
+	}
 	AddMovementInput(FVector::ForwardVector,value);
 }
 
 void ASpaceShip::MoveRight(float value)
 {
+	if (value != 0)
+	{
+		bRightMove = true;
+	}
+	else
+	{
+		bRightMove = false;
+	}
 	AddMovementInput(FVector::RightVector,value);
 }
 
@@ -83,7 +104,8 @@ void ASpaceShip::Fire()
 	{
 		FActorSpawnParameters SpawnParameters;
 		GetWorld()->SpawnActor<ABullet>(Bullet, SpawnPoint->GetComponentLocation(), SpawnPoint->GetComponentRotation(), SpawnParameters);
-		UGameplayStatics::PlaySoundAtLocation(this, ShootCue, GetActorLocation());
+		if(ShootCue)
+			UGameplayStatics::PlaySoundAtLocation(this, ShootCue, GetActorLocation());
 	}
 }
 
@@ -106,8 +128,16 @@ void ASpaceShip::OnDeath()
 {
 	bDead = true;
 	CollisionComponet->SetVisibility(false,true);
-	UGameplayStatics::PlaySoundAtLocation(this,GameOverCue,GetActorLocation());
+	if(GameOverCue)
+		UGameplayStatics::PlaySoundAtLocation(this,GameOverCue,GetActorLocation());
+	if(ExplosionParticle)
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionParticle,GetActorLocation(), FRotator::ZeroRotator,true);
 	GetWorldTimerManager().SetTimer(TimerHandle_Restart,this,&ASpaceShip::RestartLevil,2.0f,false);
+}
+
+void ASpaceShip::EscapeGame()
+{
+	GetWorld()->GetFirstPlayerController()->ConsoleCommand(TEXT("Exit"));
 }
 
 // Called every frame
@@ -116,8 +146,20 @@ void ASpaceShip::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (!bDead)
 	{
+		if (bUpMove || bRightMove)
+		{
+			ThrusterParticalComponent->Activate();
+		}
+		else
+		{
+			ThrusterParticalComponent->Deactivate();
+		}
 		LookAtCursor();
 		Move();
+	}
+	else
+	{
+		ThrusterParticalComponent->Deactivate();
 	}
 }
 
@@ -129,6 +171,7 @@ void ASpaceShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASpaceShip::MoveRight);
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASpaceShip::StartFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASpaceShip::EndFire);
+	PlayerInputComponent->BindAction("Escape", IE_Pressed, this, &ASpaceShip::EscapeGame);
 
 
 }
